@@ -25,13 +25,27 @@ body {
 }
 
 .card-header {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
 }
 
 .card-title {
   font-size: 1rem;
   color: #92929f;
 }
+
+.card-toolbar{
+  font-size: 1.2rem;
+}
+
+.card-toolbar:hover{
+  cursor: pointer;
+  color: #009ef7;
+}
+
 
 .field {
   display: flex;
@@ -49,6 +63,7 @@ body {
   flex-direction: row;
   gap: 20px;
   align-items: center;
+  width: 100%;
   padding: 10px 15px;
   background-color: #f8f8f1;
 }
