@@ -4,6 +4,7 @@ type fieldProps = {
   id: number;
   name: string;
   type: string;
+  required: boolean;
 };
 
 type Iprops = {
@@ -28,10 +29,21 @@ export default function Fields({ field, setField }: Iprops) {
     setField([...field]);
   };
 
+  // This function helps to update required the field
+  const handleRequire = (id: number) => {
+    let objIndex = field.findIndex((obj) => obj.id === id);
+    field[objIndex].required = !field[objIndex].required;
+    setField([...field]);
+  };
+
   // This function helps to delete the field
   const handleDelete = (id: number) => {
     let newFields = field.filter((field) => field.id !== id);
     setField(newFields);
+  };
+
+  const handleFieldAdd = () => {
+    console.log("this item has object");
   };
   return (
     <div className="fields">
@@ -42,11 +54,16 @@ export default function Fields({ field, setField }: Iprops) {
             <div className="field-id">{index + 1}.</div>
             <div className="field-details">
               <div className="field-details-left">
-                <input
-                  type="text"
-                  value={field[index].name}
-                  onChange={(e) => handleInput(e, item.id)}
-                />
+                <div className="form-group">
+                  <input
+                    type="text"
+                    value={field[index].name}
+                    onChange={(e) => handleInput(e, item.id)}
+                  />
+                  {field[index].required && !field[index].name ? (
+                    <span className="invalid">Field Required!</span>
+                  ) : null}
+                </div>
                 <select
                   value={field[index].type}
                   onChange={(e) => handleSelect(e, item.id)}
@@ -61,6 +78,26 @@ export default function Fields({ field, setField }: Iprops) {
                 </select>
               </div>
               <div className="field-details-right">
+                <div className="switch-componenet">
+                  <span>Required</span>
+                  <label className="switch">
+                    <input
+                      type="checkbox"
+                      checked={field[index].required}
+                      onChange={() => handleRequire(item.id)}
+                    />
+                    <span className="slider round"></span>
+                  </label>
+                </div>
+                {field[index].type === "OBJECT" ? (
+                  <div
+                    className="card-toolbar"
+                    role="button"
+                    onClick={handleFieldAdd}
+                  >
+                    <i className="ri-add-circle-line"></i>
+                  </div>
+                ) : null}
                 <div
                   className="delete-field"
                   role="button"
