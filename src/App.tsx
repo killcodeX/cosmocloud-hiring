@@ -10,16 +10,25 @@ type fieldProps = {
 function App() {
   const [field, setField] = useState<fieldProps[]>([
     {
-      id: 1,
+      id: 0,
       name: "person",
       type: "OBJECT",
     },
   ]);
+
+  const handleAdd = () => {
+    let obj = {
+      id:field.length+1,
+      name:"AddName",
+      type:"String"
+    }
+    setField([...field, obj])
+  }
   return (
     <div className="card">
       <div className="card-header">
         <div className="card-title">Field name and type</div>
-        <div className="card-toolbar" role="button">
+        <div className="card-toolbar" role="button" onClick={handleAdd}>
           <i className="ri-add-circle-line"></i>
         </div>
       </div>

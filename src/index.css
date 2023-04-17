@@ -37,38 +37,69 @@ body {
   color: #92929f;
 }
 
-.card-toolbar{
+.card-toolbar {
   font-size: 1.2rem;
 }
 
-.card-toolbar:hover{
+.card-toolbar:hover {
   cursor: pointer;
   color: #009ef7;
 }
-
 
 .field {
   display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.field-id{
+.field-id {
   color: #92929f;
 }
 
-.field-details{
+.field-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+}
+
+.field-details:hover {
+  background-color: #f8f8f1;
+}
+
+.field-details-left {
   display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  width: 100%;
-  padding: 10px 15px;
-  background-color: #f8f8f1;
 }
 
-input,select{
+.field-details-right {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.field:hover .field-details-right {
+  opacity: 1;
+  visibility: visible;
+  color: #009ef7;
+}
+
+.delete-field {
+  color: #f1416c;
+}
+
+.delete-field:hover {
+  cursor: pointer;
+}
+
+input,
+select {
+  height: 25px;
   border: none;
 }
 
