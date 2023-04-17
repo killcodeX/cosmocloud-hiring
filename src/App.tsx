@@ -6,6 +6,7 @@ type fieldProps = {
   name: string;
   type: string;
   required: boolean;
+  children?: fieldProps;
 };
 
 function App() {
@@ -36,7 +37,11 @@ function App() {
         </div>
       </div>
       <div className="card-body">
-        <Fields field={field} setField={setField} />
+        <div className="fields">
+          {field.map((item: any, index) => {
+            return <Fields item={item} index={index} field={field} setField={setField} />;
+          })}
+        </div>
       </div>
     </div>
   );

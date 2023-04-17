@@ -5,16 +5,19 @@ type fieldProps = {
   name: string;
   type: string;
   required: boolean;
+  children?: fieldProps;
 };
 
 type Iprops = {
+  item: fieldProps;
+  index: number;
   field: fieldProps[];
   setField: (value: fieldProps[]) => void;
 };
 
 let options = ["OBJECT", "STRING", "NUMBER", "BOOLEAN"];
 
-export default function Fields({ field, setField }: Iprops) {
+export default function Fields({ item, index, field, setField }: Iprops) {
   // This function helps to update Input the field
   const handleInput = (e: any, id: number) => {
     let objIndex = field.findIndex((obj) => obj.id === id);
@@ -42,74 +45,77 @@ export default function Fields({ field, setField }: Iprops) {
     setField(newFields);
   };
 
-  const handleFieldAdd = () => {
-    console.log("this item has object");
+  // This function helps to add field inside another field
+  const handleFieldAdd = (id: number) => {
+    let objIndex = field.findIndex((obj) => obj.id === id);
+    let newObj: fieldProps = {
+      id: field.length + 1,
+      name: "Child",
+      type: "OBJECT",
+      required: false,
+    };
+
+    field[objIndex].children = newObj;
+    setField([...field]);
   };
   return (
-    <div className="fields">
-      {field.map((item: any, index) => {
-        console.log(item);
-        return (
-          <div key={item.id} className="field">
-            <div className="field-id">{index + 1}.</div>
-            <div className="field-details">
-              <div className="field-details-left">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    value={field[index].name}
-                    onChange={(e) => handleInput(e, item.id)}
-                  />
-                  {field[index].required && !field[index].name ? (
-                    <span className="invalid">Field Required!</span>
-                  ) : null}
-                </div>
-                <select
-                  value={field[index].type}
-                  onChange={(e) => handleSelect(e, item.id)}
-                >
-                  {options.map((item, index) => {
-                    return (
-                      <option key={index} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <div className="field-details-right">
-                <div className="switch-componenet">
-                  <span>Required</span>
-                  <label className="switch">
-                    <input
-                      type="checkbox"
-                      checked={field[index].required}
-                      onChange={() => handleRequire(item.id)}
-                    />
-                    <span className="slider round"></span>
-                  </label>
-                </div>
-                {field[index].type === "OBJECT" ? (
-                  <div
-                    className="card-toolbar"
-                    role="button"
-                    onClick={handleFieldAdd}
-                  >
-                    <i className="ri-add-circle-line"></i>
-                  </div>
-                ) : null}
-                <div
-                  className="delete-field"
-                  role="button"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  <i className="ri-delete-bin-line"></i>
-                </div>
-              </div>
-            </div>
+    <div key={item.id} className="field">
+      <div className="field-id">{index + 1}.</div>
+      <div className="field-details">
+        <div className="field-details-left">
+          <div className="form-group">
+            <input
+              type="text"
+              value={field[index].name}
+              onChange={(e) => handleInput(e, item.id)}
+            />
+            {field[index].required && !field[index].name ? (
+              <span className="invalid">Field Required!</span>
+            ) : null}
           </div>
-        );
-      })}
+          <select
+            value={field[index].type}
+            onChange={(e) => handleSelect(e, item.id)}
+          >
+            {options.map((item, index) => {
+              return (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div className="field-details-right">
+          <div className="switch-componenet">
+            <span>Required</span>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={field[index].required}
+                onChange={() => handleRequire(item.id)}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          {field[index].type === "OBJECT" ? (
+            <div
+              className="card-toolbar"
+              role="button"
+              onClick={() => handleFieldAdd(item.id)}
+            >
+              <i className="ri-add-circle-line"></i>
+            </div>
+          ) : null}
+          <div
+            className="delete-field"
+            role="button"
+            onClick={() => handleDelete(item.id)}
+          >
+            <i className="ri-delete-bin-line"></i>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
