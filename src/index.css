@@ -24,13 +24,37 @@ body {
   box-shadow: 0 60px 40px rgb(0 0 0/ 5%);
 }
 
-.card-header{
+.card-header {
   margin-bottom: 10px;
 }
 
-.card-title{
+.card-title {
   font-size: 1rem;
-  color: #92929F;
+  color: #92929f;
+}
+
+.field {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.field-id{
+  color: #92929f;
+}
+
+.field-details{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f8f8f1;
+}
+
+input,select{
+  border: none;
 }
 
 code {
