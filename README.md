@@ -9,7 +9,6 @@
 7. There should be a save button which console the updated data.
 
 ## Thought Process
-
 ### Understanding the Requirements
 
 In the given task, we need to create a nested component which has,
