@@ -50,6 +50,7 @@ function App() {
     },
   ]);
 
+  // Global add function to add parent field
   const handleAdd = () => {
     let obj: fieldProps = {
       id: uuid(),
@@ -62,9 +63,11 @@ function App() {
     setField([...field, obj]);
   };
 
+  // function to console the saved data
   const handleConsole = () =>{
     console.log(field)
   }
+  
   return (
     <div className="card">
       <div className="card-header">

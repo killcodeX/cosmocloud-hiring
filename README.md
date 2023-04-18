@@ -43,7 +43,7 @@ In our Main component, we will be creating a Card UI, and in Card's header, have
 
 #### Step 1
 
-Before we move forward and start working to implement Parent component, we create an sample nested array object and save it into ```field``` hook and map it with our Field component and also map its children (if present).
+Before we move forward and start working to implement Parent component, we create an sample nested array object and save it into `field` hook and map it with our Field component and also map its children (if present).
 
 #### Step 2
 
@@ -53,8 +53,27 @@ In our field component, we will add rest of our features like, required switch, 
 
 Now the final or complex part comes,
 
+##### Function to handle Global Add Function
+
+Inorder to add parent field we will use `handleAdd` function in which we will create a sample object and simply add to our `field` hook using `setField` function.
+
+```typescript
+// Global add function to add parent field
+const handleAdd = () => {
+  let obj: fieldProps = {
+    id: uuid(),
+    name: "AddName",
+    type: "OBJECT",
+    required: false,
+    level: 0,
+    children: [],
+  };
+  setField([...field, obj]);
+};
+```
 
 ##### Function to handle Input field
+
 - In order to save Input field name, we will use `handleInput` function and will pass Id of the current item,
 
 ```typescript
@@ -77,7 +96,7 @@ const handleInput = (e: any, id: string) => {
 };
 ```
 
-In the above funtion we will use recursice ```updateItem``` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field, and finally returns the object. And the we will update our field hook using ```setfield``` function.
+In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field, and finally returns the object. And the we will update our field hook using `setfield` function.
 
 ## Getting Started
 
