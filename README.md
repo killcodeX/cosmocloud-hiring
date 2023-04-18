@@ -41,7 +41,12 @@ We will be using two component,
 In our Main component, we will be creating a Card UI, and in Card's header, have Feature's name and a global add button.
 
 #### Step 1
+Before we move forward and start working to implement Parent component, we create an sample nested array object and map it with our Field component and also map children.
 
+#### Step 2
+In our field component, we will add rest of our features like, required switch, local add button and delete button and CSS rules to it.
+
+#### Step 3
 
 ## Getting Started
 
