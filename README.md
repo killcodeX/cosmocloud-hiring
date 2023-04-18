@@ -51,7 +51,7 @@ In our field component, we will add rest of our features like, required switch, 
 
 #### Step 3
 
-We will also install ```uuid``` library which will generate unique id for each field, as id will goind to play major role in updating, adding children and deleteing each field.
+We will also install ```uuid``` library which will generate unique id for each field, as id will going to play major role in updating, adding children and deleteing each field.
 
 #### Step 4
 
