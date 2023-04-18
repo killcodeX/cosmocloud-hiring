@@ -51,9 +51,13 @@ In our field component, we will add rest of our features like, required switch, 
 
 #### Step 3
 
+We will also install ```uuid``` library which will generate unique id for each field, as id will goind to play major role in updating, adding children and deleteing each field.
+
+#### Step 4
+
 Now the final or complex part comes,
 
-##### Function to handle Global Add Function
+##### \* Function to handle Global Add Function
 
 Inorder to add parent field we will use `handleAdd` function in which we will create a sample object and simply add to our `field` hook using `setField` function.
 
@@ -72,7 +76,7 @@ const handleAdd = () => {
 };
 ```
 
-##### Function to handle Input field
+##### \* Function to handle Input field
 
 In order to save Input field name, we will use `handleInput` function and will pass Id of the current item,
 
@@ -98,7 +102,7 @@ const handleInput = (e: any, id: string) => {
 
 In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field, and finally returns the object. And the we will update our field hook using `setfield` function.
 
-##### Function to handle Select field
+##### \* Function to handle Select field
 
 In order to save Input field type, we will use `handleSelect` function and will pass Id of the current item,
 
@@ -124,31 +128,98 @@ const handleSelect = (e: any, id: string) => {
 
 In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field type, and finally returns the object. And the we will update our field hook using `setfield` function.
 
-##### Function to handle Required field
+##### \* Function to handle Required field
 
 In order to save Input field type, we will use `handleRequire` function and will pass Id of the current item,
 
 ```typescript
 // This function helps to update required the field
-  const handleRequire = (id: string) => {
-    function updateItem(fields: fieldProps[], id: string) {
-      return fields.map((item) => {
-        if (item.id === id) {
-          item.required = !item.required;
-        } else if (item.children) {
-          item.children = updateItem(item.children, id);
-        }
-        return item;
-      });
-    }
-    const newItems = updateItem(field, id);
-    setField(newItems);
-    setRequire(!inputRequire);
-  };
+const handleRequire = (id: string) => {
+  function updateItem(fields: fieldProps[], id: string) {
+    return fields.map((item) => {
+      if (item.id === id) {
+        item.required = !item.required;
+      } else if (item.children) {
+        item.children = updateItem(item.children, id);
+      }
+      return item;
+    });
+  }
+  const newItems = updateItem(field, id);
+  setField(newItems);
+  setRequire(!inputRequire);
 };
 ```
 
 In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field required, and finally returns the object. And the we will update our field hook using `setfield` function.
+
+##### \* Function to handle Delete field
+
+In order to save Input field type, we will use `handleDelete` function and will pass Id of the current item,
+
+```typescript
+// This function helps to delete the field
+const handleDelete = (fields: fieldProps[], id: string) => {
+  function removeItem(fields: fieldProps[], id: string) {
+    return fields.filter((item) => {
+      if (item.id === id) {
+        return false;
+      } else if (item.children) {
+        item.children = removeItem(item.children, id);
+      }
+      return true;
+    });
+  }
+
+  const newItems = removeItem(fields, id);
+  setField(newItems);
+};
+```
+
+In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will return the rest function beacuse we are using special `filter` function, and finally returns the object. And the we will update our field hook using `setfield` function.
+
+##### \* Function to handle adding children field
+
+In order to add children field, we will use `handleFieldAdd` function and will pass Id of the current item,
+
+```typescript
+const handleFieldAdd = (id: string) => {
+  let obj: fieldProps = {
+    id: uuid(),
+    name: "AddName",
+    type: "OBJECT",
+    required: false,
+    level: item.level + 1,
+    children: [],
+  };
+  function updateItem(fields: fieldProps[], id: string, obj: fieldProps) {
+    return fields.map((item) => {
+      if (item.id === id) {
+        item.children.push(obj);
+      } else if (item.children) {
+        item.children = updateItem(item.children, id, obj);
+      }
+      return item;
+    });
+  }
+
+  const newItems = updateItem(field, id, obj);
+  setField(newItems);
+};
+```
+
+In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, int the current item object's children array, we will pass the sample object, and finally returns the object. And the we will update our field hook using `setfield` function.
+
+##### \* Function to console add data
+
+In order to console the updated object, we will use `handleConsole` function,
+
+```typescript
+// function to console the saved data
+const handleConsole = () => {
+  console.log(field);
+};
+```
 
 ## Getting Started
 

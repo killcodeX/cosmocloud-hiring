@@ -94,7 +94,7 @@ export default function Fields({ item, index, field, setField }: Iprops) {
     setField(newItems);
   };
 
-  //   // This function helps to add child field inside parent field field
+   // This function helps to add child field inside parent field field
   const handleFieldAdd = (id: string) => {
     let obj: fieldProps = {
       id: uuid(),
@@ -117,7 +117,6 @@ export default function Fields({ item, index, field, setField }: Iprops) {
 
     const newItems = updateItem(field, id, obj);
     setField(newItems);
-    console.log(item);
   };
 
   return (
