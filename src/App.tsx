@@ -89,7 +89,7 @@ function App() {
         </div>
       </div>
       <div className="card-footer">
-        <button type="button" onClick={handleConsole}>Console Data</button>
+        <button type="button" onClick={handleConsole}>Save Data</button>
       </div>
     </div>
   );

@@ -205,3 +205,19 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* card-footer */
+.card-footer {
+  display:flex;
+  justify-content:center;
+  padding:10px 0;
+}
+
+button{
+  cursor:pointer;
+  border:none;
+  color:#fff;
+  padding:15px 25px;
+  background:#009ef7;
+  border-radius:5px;
+}
