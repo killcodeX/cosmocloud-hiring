@@ -39,6 +39,7 @@ After running the development server the site should be running on [https://loca
 
 A quick look at the folder structure of this project.
 
+```
 .
 └── cosmoloud-hiring/
     ├── node_modules
@@ -58,6 +59,7 @@ A quick look at the folder structure of this project.
     ├── package.json
     ├── README.md
     └── tsconfig.json
+```
 
 ## Tools Used
 
