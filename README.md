@@ -17,13 +17,31 @@ In the given task, we need to create a nested component which has,
     * Inside Parent and Children Field, we need,
         * Input text to save/edit name of a field
         * Select Element to select options from ["OBJECT", "STRING", "NUMBER", "BOOLEAN"].
-        * A required Switch, which makes user mandotry to fill the input field, if kept empty shows invalid message
+        * A required Switch, which makes user mandatory to fill the input field, if kept empty shows invalid message
         * If the Option selected is "OBJECT", then a local add button is present which adds children to the parent.
         * Then finally there is a delete button which deletes that specific item.
-* Also need to add few CSS rules like border and hover function when user hovers the component, require switch, local add button and delete button is visible.
+* Also need to add few CSS rules like border and a hover function when user hovers the component, require switch, local add button and delete button is visible.
 * Finally we need to add button which on clicked, console the object.
 
 ### Plan the Implementation
+
+In order to implement the given challenge, I will be using,
+
+* React
+* Typescript
+* Raw Styling CSS
+
+We will be using two component, 
+
+* Main Component
+* Nested Component
+
+### Break it Down
+
+In our Main component, we will be creating a Card UI, and in Card's header, have Feature's name and a global add button.
+
+#### Step 1
+
 
 ## Getting Started
 
