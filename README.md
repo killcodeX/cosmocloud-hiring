@@ -9,44 +9,75 @@
 7. There should be a save button which console the updated data.
 
 ## Thought Process
+
 ### Understanding the Requirements
 
 In the given task, we need to create a nested component which has,
 
-* Global Add button to add Parent Field
-    * Inside Parent and Children Field, we need,
-        * Input text to save/edit name of a field
-        * Select Element to select options from ["OBJECT", "STRING", "NUMBER", "BOOLEAN"].
-        * A required Switch, which makes user mandatory to fill the input field, if kept empty shows invalid message
-        * If the Option selected is "OBJECT", then a local add button is present which adds children to the parent.
-        * Then finally there is a delete button which deletes that specific item.
-* Also need to add few CSS rules like border and a hover function when user hovers the component, require switch, local add button and delete button is visible.
-* Finally we need to add button which on clicked, console the object.
+- Global Add button to add Parent Field
+  - Inside Parent and Children Field, we need,
+    - Input text to save/edit name of a field
+    - Select Element to select options from ["OBJECT", "STRING", "NUMBER", "BOOLEAN"].
+    - A required Switch, which makes user mandatory to fill the input field, if kept empty shows invalid message
+    - If the Option selected is "OBJECT", then a local add button is present which adds children to the parent.
+    - Then finally there is a delete button which deletes that specific item.
+- Also need to add few CSS rules like border and a hover function when user hovers the component, require switch, local add button and delete button is visible.
+- Finally we need to add button which on clicked, console the object.
 
 ### Plan the Implementation
 
 In order to implement the given challenge, I will be using,
 
-* React
-* Typescript
-* Raw Styling CSS
+- React
+- Typescript
+- Raw Styling CSS
 
-We will be using two component, 
+We will be using two component,
 
-* Main Component
-* Nested Component
+- Main Component
+- Nested Component
 
 ### Break it Down
 
 In our Main component, we will be creating a Card UI, and in Card's header, have Feature's name and a global add button.
 
 #### Step 1
-Before we move forward and start working to implement Parent component, we create an sample nested array object and map it with our Field component and also map children.
+
+Before we move forward and start working to implement Parent component, we create an sample nested array object and save it into ```field``` hook and map it with our Field component and also map its children (if present).
 
 #### Step 2
+
 In our field component, we will add rest of our features like, required switch, local add button and delete button and CSS rules to it.
 
 #### Step 3
+
+Now the final or complex part comes,
+
+
+##### Function to handle Input field
+- In order to save Input field name, we will use `handleInput` function and will pass Id of the current item,
+
+```typescript
+// This function helps to update Input the field
+const handleInput = (e: any, id: string) => {
+  function updateItem(fields: fieldProps[], id: string) {
+    return fields.map((item) => {
+      if (item.id === id) {
+        item.name = e.target.value;
+      } else if (item.children) {
+        item.children = updateItem(item.children, id);
+      }
+      return item;
+    });
+  }
+
+  const newItems = updateItem(field, id);
+  setField(newItems);
+  setName(e.target.value);
+};
+```
+
+In the above funtion we will use recursice ```updateItem``` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field, and finally returns the object. And the we will update our field hook using ```setfield``` function.
 
 ## Getting Started
 
@@ -73,6 +104,7 @@ Then start the development Server
 ```
 npm start
 ```
+
 After running the development server the site should be running on [https://localhost:3000](https://localhost:3000)
 
 ## :open_file_folder: What's inside?
