@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import uuid from 'react-uuid';
+import uuid from "react-uuid";
 
 interface fieldProps {
   id: string;
@@ -47,7 +47,7 @@ export default function Fields({ item, index, field, setField }: Iprops) {
     function updateItem(fields: fieldProps[], id: string) {
       return fields.map((item) => {
         if (item.id === id) {
-          item.required = item.type = e.target.value;
+          item.type = e.target.value;
         } else if (item.children) {
           item.children = updateItem(item.children, id);
         }
@@ -107,7 +107,7 @@ export default function Fields({ item, index, field, setField }: Iprops) {
     function updateItem(fields: fieldProps[], id: string, obj: fieldProps) {
       return fields.map((item) => {
         if (item.id === id) {
-            item.children.push(obj);
+          item.children.push(obj);
         } else if (item.children) {
           item.children = updateItem(item.children, id, obj);
         }
