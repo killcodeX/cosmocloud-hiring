@@ -74,7 +74,7 @@ const handleAdd = () => {
 
 ##### Function to handle Input field
 
-- In order to save Input field name, we will use `handleInput` function and will pass Id of the current item,
+In order to save Input field name, we will use `handleInput` function and will pass Id of the current item,
 
 ```typescript
 // This function helps to update Input the field
@@ -97,6 +97,58 @@ const handleInput = (e: any, id: string) => {
 ```
 
 In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field, and finally returns the object. And the we will update our field hook using `setfield` function.
+
+##### Function to handle Select field
+
+In order to save Input field type, we will use `handleSelect` function and will pass Id of the current item,
+
+```typescript
+// This function helps to update select the field
+const handleSelect = (e: any, id: string) => {
+  function updateItem(fields: fieldProps[], id: string) {
+    return fields.map((item) => {
+      if (item.id === id) {
+        item.type = e.target.value;
+      } else if (item.children) {
+        item.children = updateItem(item.children, id);
+      }
+      return item;
+    });
+  }
+
+  const newItems = updateItem(field, id);
+  setField(newItems);
+  setType(e.target.value);
+};
+```
+
+In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field type, and finally returns the object. And the we will update our field hook using `setfield` function.
+
+##### Function to handle Required field
+
+In order to save Input field type, we will use `handleRequire` function and will pass Id of the current item,
+
+```typescript
+// This function helps to update required the field
+  const handleRequire = (id: string) => {
+    function updateItem(fields: fieldProps[], id: string) {
+      return fields.map((item) => {
+        if (item.id === id) {
+          item.required = !item.required;
+        } else if (item.children) {
+          item.children = updateItem(item.children, id);
+        }
+        return item;
+      });
+    }
+    const newItems = updateItem(field, id);
+    setField(newItems);
+    setRequire(!inputRequire);
+  };
+};
+```
+
+In the above funtion we will use recursice `updateItem` function which takes two parameter, field hook and item id, and we will traverse through the orignal array object, once we id matches, we will update the current object field required, and finally returns the object. And the we will update our field hook using `setfield` function.
 
 ## Getting Started
 
