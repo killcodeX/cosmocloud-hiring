@@ -1,5 +1,5 @@
-import { useId } from "react";
 import React, { useState } from "react";
+import uuid from 'react-uuid';
 
 interface fieldProps {
   id: string;
@@ -20,13 +20,9 @@ interface Iprops {
 let options = ["OBJECT", "STRING", "NUMBER", "BOOLEAN"];
 
 export default function Fields({ item, index, field, setField }: Iprops) {
-  const fieldId = useId();
   const [inputName, setName] = useState(item.name);
   const [inputType, setType] = useState(item.type);
   const [inputRequire, setRequire] = useState(item.required);
-
-  console.log("this is item --->", item);
-  console.log("this id field --->", field);
 
   // This function helps to update Input the field
   const handleInput = (e: any, id: string) => {
@@ -76,13 +72,12 @@ export default function Fields({ item, index, field, setField }: Iprops) {
         return item;
       });
     }
-
     const newItems = updateItem(field, id);
     setField(newItems);
     setRequire(!inputRequire);
   };
 
-  //   // This function helps to delete the field
+  // This function helps to delete the field
   const handleDelete = (fields: fieldProps[], id: string) => {
     function removeItem(fields: fieldProps[], id: string) {
       return fields.filter((item) => {
@@ -102,7 +97,7 @@ export default function Fields({ item, index, field, setField }: Iprops) {
   //   // This function helps to add child field inside parent field field
   const handleFieldAdd = (id: string) => {
     let obj: fieldProps = {
-      id: fieldId,
+      id: uuid(),
       name: "AddName",
       type: "OBJECT",
       required: false,

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Fields from "./components/fields";
-import { useId } from "react";
+import uuid from 'react-uuid';
 
 interface fieldProps {
   id: string;
@@ -13,17 +13,16 @@ interface fieldProps {
 
 function App() {
 
-  const fieldId = useId()
   const [field, setField] = useState<fieldProps[]>([
     {
-      id: '0',
+      id: uuid(),
       name: "person",
       type: "OBJECT",
       required: false,
       level: 0,
       children: [
         {
-          id: '10',
+          id: uuid(),
           name: "children1",
           type: "STRING",
           required: false,
@@ -31,14 +30,14 @@ function App() {
           children: [],
         },
         {
-          id: '20',
+          id: uuid(),
           name: "children2",
           type: "NUMBER",
           required: false,
           level: 1,
           children: [
             {
-              id: '30',
+              id: uuid(),
               name: "children2",
               type: "STRING",
               required: false,
@@ -53,7 +52,7 @@ function App() {
 
   const handleAdd = () => {
     let obj: fieldProps = {
-      id: '40',
+      id: uuid(),
       name: "AddName",
       type: "OBJECT",
       required: false,
@@ -62,6 +61,10 @@ function App() {
     };
     setField([...field, obj]);
   };
+
+  const handleConsole = () =>{
+    console.log(field)
+  }
   return (
     <div className="card">
       <div className="card-header">
@@ -84,6 +87,9 @@ function App() {
             );
           })}
         </div>
+      </div>
+      <div className="card-footer">
+        <button type="button" onClick={handleConsole}>Console Data</button>
       </div>
     </div>
   );
