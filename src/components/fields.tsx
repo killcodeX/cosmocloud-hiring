@@ -109,7 +109,19 @@ export default function Fields({ item, index, field, setField }: Iprops) {
       level: item.level + 1,
       children: [],
     };
-    item.children.push(obj);
+    function updateItem(fields: fieldProps[], id: string, obj: fieldProps) {
+      return fields.map((item) => {
+        if (item.id === id) {
+            item.children.push(obj);
+        } else if (item.children) {
+          item.children = updateItem(item.children, id, obj);
+        }
+        return item;
+      });
+    }
+
+    const newItems = updateItem(field, id, obj);
+    setField(newItems);
     console.log(item);
   };
 
