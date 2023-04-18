@@ -30,19 +30,55 @@ export default function Fields({ item, index, field, setField }: Iprops) {
 
   // This function helps to update Input the field
   const handleInput = (e: any, id: string) => {
-    item.name = e.target.value;
+    function updateItem(fields: fieldProps[], id: string) {
+      return fields.map((item) => {
+        if (item.id === id) {
+          item.name = e.target.value;
+        } else if (item.children) {
+          item.children = updateItem(item.children, id);
+        }
+        return item;
+      });
+    }
+
+    const newItems = updateItem(field, id);
+    setField(newItems);
     setName(e.target.value);
   };
 
   // This function helps to update select the field
   const handleSelect = (e: any, id: string) => {
-    item.type = e.target.value;
+    function updateItem(fields: fieldProps[], id: string) {
+      return fields.map((item) => {
+        if (item.id === id) {
+          item.required = item.type = e.target.value;
+        } else if (item.children) {
+          item.children = updateItem(item.children, id);
+        }
+        return item;
+      });
+    }
+
+    const newItems = updateItem(field, id);
+    setField(newItems);
     setType(e.target.value);
   };
 
   // This function helps to update required the field
   const handleRequire = (id: string) => {
-    item.required = !item.required;
+    function updateItem(fields: fieldProps[], id: string) {
+      return fields.map((item) => {
+        if (item.id === id) {
+          item.required = !item.required;
+        } else if (item.children) {
+          item.children = updateItem(item.children, id);
+        }
+        return item;
+      });
+    }
+
+    const newItems = updateItem(field, id);
+    setField(newItems);
     setRequire(!inputRequire);
   };
 
