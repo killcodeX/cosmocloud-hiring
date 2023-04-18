@@ -8,6 +8,24 @@
 6. Users should be able to add nested fields to object type.
 7. There should be a save button which console the updated data.
 
+## Thought Process
+
+### Understanding the Requirements
+
+In the given task, we need to create a nested component which has,
+
+* Global Add button to add Parent Field
+    * Inside Parent and Children Field, we need,
+        * Input text to save/edit name of a field
+        * Select Element to select options from ["OBJECT", "STRING", "NUMBER", "BOOLEAN"].
+        * A required Switch, which makes user mandotry to fill the input field, if kept empty shows invalid message
+        * If the Option selected is "OBJECT", then a local add button is present which adds children to the parent.
+        * Then finally there is a delete button which deletes that specific item.
+* Also need to add few CSS rules like border and hover function when user hovers the component, require switch, local add button and delete button is visible.
+* Finally we need to add button which on clicked, console the object.
+
+### Plan the Implementation
+
 ## Getting Started
 
 ### Step 1: Change the branch from main to task1
