@@ -65,3 +65,7 @@ A quick look at the folder structure of this project.
 
 1. React.js
 2. Raw CSS for styling
+
+## Live Demo
+
+App has been live on [https://como-hiring-task1.netlify.app](https://como-hiring-task1.netlify.app)
