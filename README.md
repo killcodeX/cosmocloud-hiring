@@ -261,6 +261,8 @@ A quick look at the folder structure of this project.
     ├── src/
     │   ├── components/
     │   │   └── fields.tsx
+    │   ├── models/
+    │   │   └── model
     │   ├── app.test.tsx
     │   ├── app.tsx
     │   ├── index.css
