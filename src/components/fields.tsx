@@ -1,21 +1,6 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
-
-interface fieldProps {
-  id: string;
-  name: string;
-  type: string;
-  required: boolean;
-  level: number;
-  children: Array<fieldProps>;
-}
-
-interface Iprops {
-  item: fieldProps;
-  index: number;
-  field: Array<fieldProps>;
-  setField: (value: fieldProps[]) => void;
-}
+import { fieldProps, Iprops } from '../models/model';
 
 let options = ["OBJECT", "STRING", "NUMBER", "BOOLEAN"];
 
@@ -25,7 +10,7 @@ export default function Fields({ item, index, field, setField }: Iprops) {
   const [inputRequire, setRequire] = useState(item.required);
 
   // This function helps to update Input the field
-  const handleInput = (e: any, id: string) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
     function updateItem(fields: fieldProps[], id: string) {
       return fields.map((item) => {
         if (item.id === id) {
@@ -43,7 +28,7 @@ export default function Fields({ item, index, field, setField }: Iprops) {
   };
 
   // This function helps to update select the field
-  const handleSelect = (e: any, id: string) => {
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>, id: string) => {
     function updateItem(fields: fieldProps[], id: string) {
       return fields.map((item) => {
         if (item.id === id) {

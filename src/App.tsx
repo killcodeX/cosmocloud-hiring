@@ -1,15 +1,9 @@
 import { useState } from "react";
 import Fields from "./components/fields";
 import uuid from 'react-uuid';
+import { fieldProps } from './models/model';
 
-interface fieldProps {
-  id: string;
-  name: string;
-  type: string;
-  required: boolean;
-  level: number;
-  children: Array<fieldProps>;
-}
+
 
 function App() {
 
@@ -55,7 +49,7 @@ function App() {
     let obj: fieldProps = {
       id: uuid(),
       name: "AddName",
-      type: "OBJECT",
+      type: "STRING",
       required: false,
       level: 0,
       children: [],

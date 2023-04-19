@@ -82,7 +82,7 @@ In order to save Input field name, we will use `handleInput` function and will p
 
 ```typescript
 // This function helps to update Input the field
-const handleInput = (e: any, id: string) => {
+const handleInput = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
   function updateItem(fields: fieldProps[], id: string) {
     return fields.map((item) => {
       if (item.id === id) {
@@ -108,7 +108,7 @@ In order to save Input field type, we will use `handleSelect` function and will 
 
 ```typescript
 // This function helps to update select the field
-const handleSelect = (e: any, id: string) => {
+const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>, id: string) => {
   function updateItem(fields: fieldProps[], id: string) {
     return fields.map((item) => {
       if (item.id === id) {

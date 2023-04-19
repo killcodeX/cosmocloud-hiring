@@ -57,14 +57,14 @@ body {
   gap: 20px;
   align-items: center;
   padding-left: 5px;
-  border-left: 1px solid #9d9da6;
+  border-left: 1px solid #e9e8ef;
 }
 
 .children-field {
   padding-top: 10px;
   padding-left: 30px;
   padding-bottom: 10px;
-  border-left: 1px solid #9d9da6;
+  border-left: 1px solid #e9e8ef;
 }
 
 .field-id {
