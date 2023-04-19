@@ -1,12 +1,9 @@
 import { useState } from "react";
 import Fields from "./components/fields";
-import uuid from 'react-uuid';
-import { fieldProps } from './models/model';
-
-
+import uuid from "react-uuid";
+import { fieldProps } from "./models/model";
 
 function App() {
-
   const [field, setField] = useState<fieldProps[]>([
     {
       id: uuid(),
@@ -17,22 +14,22 @@ function App() {
       children: [
         {
           id: uuid(),
-          name: "children1",
-          type: "STRING",
-          required: false,
-          level: 1,
-          children: [],
-        },
-        {
-          id: uuid(),
-          name: "children2",
-          type: "NUMBER",
+          name: "name",
+          type: "OBJECT",
           required: false,
           level: 1,
           children: [
             {
               id: uuid(),
-              name: "children2",
+              name: "firstName",
+              type: "NUMBER",
+              required: false,
+              level: 2,
+              children: [],
+            },
+            {
+              id: uuid(),
+              name: "lastName",
               type: "STRING",
               required: false,
               level: 2,
@@ -40,7 +37,31 @@ function App() {
             },
           ],
         },
+        {
+          id: uuid(),
+          name: "age",
+          type: "NUMBER",
+          required: false,
+          level: 1,
+          children: [],
+        },
       ],
+    },
+    {
+      id: uuid(),
+      name: "order",
+      type: "STRING",
+      required: false,
+      level: 0,
+      children: [],
+    },
+    {
+      id: uuid(),
+      name: "class",
+      type: "BOOLEAN",
+      required: false,
+      level: 0,
+      children: [],
     },
   ]);
 
@@ -58,10 +79,10 @@ function App() {
   };
 
   // function to console the saved data
-  const handleConsole = () =>{
-    console.log(field)
-  }
-  
+  const handleConsole = () => {
+    console.log(field);
+  };
+
   return (
     <div className="card">
       <div className="card-header">
@@ -86,7 +107,9 @@ function App() {
         </div>
       </div>
       <div className="card-footer">
-        <button type="button" onClick={handleConsole}>Save Data</button>
+        <button type="button" onClick={handleConsole}>
+          Save Data
+        </button>
       </div>
     </div>
   );
